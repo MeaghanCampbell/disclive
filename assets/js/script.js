@@ -56,7 +56,7 @@ pressEnter.addEventListener("keyup", function(event) {
 
 var fetchTasteData = function(artistName) {
   fetch(
-    `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artistName}&api_key=b370f92f2a49f6e2167f2bdd9da3c14b&format=json`
+    `http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist=${artistName}&api_key=924ac96deb482029a730219988aece0f&format=json`
   )
   .then(function(response) {
 
