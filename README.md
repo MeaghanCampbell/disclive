@@ -1,5 +1,6 @@
 # DISClive
 
+This is the second iteration for DiscLive because of depreciated web API's in version 1.
 
 ## 💬Description
 DISClive is a live music discovery platform. Users can search artists they love, find artists that are similar, and see if any of those similar artists are playing shows near them. 
@@ -10,10 +11,22 @@ DISClive is a live music discovery platform. Users can search artists they love,
 * I WANT to see new artists in concert
 * SO THAT I can expand my music repitiore and find artists to follow that are similar to the ones I like
 <br></br>
-<br></br>
-* GIVEN ...
-* WHEN I ...
-* THEN I ...
+* GIVEN an artist/concert discovery platform
+* WHEN I search for a familiar artist
+* THEN I am presented with five similar artists relating to my search that are saved to local storage
+* WHEN I view the five similar artists
+* THEN I am presented with the artist names, a button to ‘find shows’, and a ‘trash’ button
+* WHEN I click ‘trash’
+* THEN I no longer see the similar artist presented on the list
+* WHEN I click ‘find shows’
+* THEN I am redirected to a second page that displays the artist’s upcoming shows – if the artist does not have upcoming shows, then I will be shown an alert stating ‘Artist has no upcoming shows’
+* WHEN I view the shows
+* THEN I see the city, date, and button for ‘see more info & get tickets’
+* WHEN I click ‘see more info & get tickets’
+* THEN I am redirected to the bandsintown website where I can see details for my selected show and an option to buy tickets
+* WHEN I click the header on the second page
+* THEN I am redirected back to the homepage 
+
 
 
 ## 🎨Mock-Up
@@ -25,15 +38,18 @@ DISClive is a live music discovery platform. Users can search artists they love,
 * HTML
 * CSS
 * Javascript
-* Tailwind
+* Tailwind CSS
 * Google Fonts
 * Font Awesome
-* TasteDive API
+* Favicon
+* Moment.js
+* Last FM API
 * BandsInTown API
 
 
+
 ## 💻Website
-https://meaghancampbell.github.io/disc-live/
+Please view deployed application at [DISClive](https://meaghancampbell.github.io/disc-live/).
 
 <br>![](website.gif)</br>
 
