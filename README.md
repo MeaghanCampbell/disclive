@@ -44,16 +44,18 @@ DISClive is a live music discovery platform. Users can search artists they love,
 * Favicon
 * Moment.js
 * Last FM API
-* BandsInTown API
+* TicketMaster API
 
 
 
 ## 💻Website
-Please view deployed application at [DISClive](https://meaghancampbell.github.io/disc-live/).
+Please view deployed application at [DISClive](https://meaghancampbell.github.io/disclive/).
 
 <br>![](website.gif)</br>
 
 
-## 📌Contributors
+## 📌Contributors of V1
 Meaghan Campbell, Taylor Gentry, Daniel Starkey
 
+## V2 updated by 
+Meaghan Campbell
