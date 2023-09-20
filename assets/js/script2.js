@@ -63,33 +63,38 @@ var fetchBandsData = function(artistName2) {
 // function to display concert dates
 var displayConcertDates = function() {
 
-    console.log(concertData)
-
     var similarArtistName = document.querySelector('#similar-artist')
     similarArtistName.textContent = ''
     similarArtistName.textContent = searchedArtist + ' Upcoming Shows'
 
-    // for (let i = 0; i < concertData.length; i++) {
-    // var concertBackgroundEl = document.createElement('li')
-    // concertBackgroundEl.className = 'artist-background'
+    var keys = Object.keys(concertData);
 
-    // var concertMoment = moment(data[i].datetime).format('M/D/Y')
-    // var concertCityEl = document.createElement('p')
-    // concertCityEl.classList.add('song-details')
-    // concertCityEl.textContent = 'in ' + data[i].venue.city 
-    // + ' on ' + concertMoment
+    // Select the ul element
+    var concertContainerEl = document.querySelector('#concert-container');
 
-    // var infoBtnEl = document.createElement('a')
-    // infoBtnEl.classList.add('shows')
-    // infoBtnEl.textContent = 'See more info & get tickets'
-    // infoBtnEl.setAttribute("href", data[i].url);
-    // infoBtnEl.setAttribute("target", "_blank");
+    for (let i = 0; i < keys.length; i++) {
+        
+        var concertBackgroundEl = document.createElement('li')
+        concertBackgroundEl.className = 'artist-background'
 
-    // concertSectionEl.appendChild(concertBackgroundEl)
-    // concertBackgroundEl.appendChild(concertCityEl)
-    // concertBackgroundEl.appendChild(infoBtnEl)
+        var concertEl = document.createElement('p')
+        concertEl.classList.add('song-details')
+        concertEl.innerHTML = `${concertData[keys[i]].name} <br /> <strong>in</strong> ${concertData[keys[i]].city} 
+                            <strong>on</strong> ${moment(concertData[keys[i]].date).format('M/D/Y')} 
+                            <strong>at</strong> ${concertData[keys[i]].venue}`
+
+        var infoBtnEl = document.createElement('a')
+        infoBtnEl.classList.add('shows')
+        infoBtnEl.textContent = 'See more info & get tickets'
+        infoBtnEl.setAttribute("href", concertData[keys[i]].url);
+        infoBtnEl.setAttribute("target", "_blank");
+
+        // Append the li element to the ul element
+        concertContainerEl.appendChild(concertBackgroundEl)
+        concertBackgroundEl.appendChild(concertEl)
+        concertBackgroundEl.appendChild(infoBtnEl)
     
-    // }
+    }
 
 }
 

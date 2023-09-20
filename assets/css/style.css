@@ -63,8 +63,6 @@
   .artist-container {
     margin: 2px auto;
     padding: 6px;
-    width: 80%;
-  
   }
   /* artist container styles (li element) */
   .artist-background {
@@ -113,12 +111,20 @@
   @media only screen and (max-width: 575px) {
     .artist-background {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
       align-content: center;
     }
     .song-details {
       display: flex;
+      flex-direction: column;
       align-content: center;
       padding-left: 15px;
     }
   }
+
+  .artist-background {
+    max-width: 70em;
+    margin: 1em auto;
+  }
+
