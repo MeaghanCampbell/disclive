@@ -16,6 +16,14 @@ var recentSearchEl = document.querySelector('#recent-searches')
 //select recent searched artist
 var recentSearch = localStorage.getItem ("storedArtist")
 
+function toggleModal () {
+  const body = document.querySelector('body')
+  const modal = document.querySelector('.modal')
+  modal.classList.toggle('hidden')
+  modal.classList.toggle('pointer-events-none')
+  body.classList.toggle('modal-active')
+}
+
 // function to run recent searches
 var searchRecentFunction = function () {
   if (recentSearch) {
@@ -67,61 +75,78 @@ var fetchTasteData = function(artistName) {
 
       let artistArray = data.similarartists.artist
 
-      console.log(artistArray)
-      
-      displaySongPlayer(artistArray)
-
+      if (artistArray.length === 0) {
+        toggleModal()
+      } else {
+        displaySongPlayer(artistArray)
+      }
+  })
+  .catch(function(error) {
+    toggleModal()
   })
 }
 
 
 // function to display artist
+// function to display artist
 var displaySongPlayer = function(data) {
 
-    var artistNameDisplay = document.querySelector('#searched-artist')
-    artistNameDisplay.textContent = ''
+  var artistNameDisplay = document.querySelector('#searched-artist')
+  artistNameDisplay.textContent = ''
 
-    for (let i = 0; i < 5; i++) {
+  // Create a copy of the data array
+  var dataCopy = [...data];
 
-    // create artist background (li)
-    var artistBackgroundEl = document.createElement('li')
-    artistBackgroundEl.className = 'artist-background'
-    artistBackgroundEl.setAttribute('id', 'container-' + i)
+  for (let i = 0; i < 5; i++) {
 
-    // create p element and give it value of songTitle (searched term)
-    var artistNameEl = document.createElement('p')
-    artistNameEl.classList.add('song-details')
-    artistNameEl.textContent = data[i].name
+      // Select a random index
+      var randomIndex = Math.floor(Math.random() * dataCopy.length);
 
-    // create container for buttons
-    var btnContainerEl = document.createElement('div')
-    btnContainerEl.classList.add('button-container')
+      // Get the artist at the random index
+      var artist = dataCopy[randomIndex];
 
-    // create find shows button
-    var showsBtnEl = document.createElement('a')
-    showsBtnEl.classList.add('shows')
-    showsBtnEl.textContent = 'Find Shows'
-    showsBtnEl.setAttribute('href', './playPage.html?q=' + artistNameEl.textContent);
+      // Remove the selected artist from the dataCopy array
+      dataCopy.splice(randomIndex, 1);
 
-    // create trash button and icon
-    var trashBtnEl = document.createElement('button')
-    trashBtnEl.classList.add('trash')
-    trashBtnEl.classList.add('far')
-    trashBtnEl.classList.add('fa-trash-alt')
-    // id for trash button so we can target to remove item
-    trashBtnEl.setAttribute('id', 'button-' + i)
-    trashBtnEl.addEventListener('click', function(e) {
-      removeArtist(e, i)
-    })
+      // create artist background (li)
+      var artistBackgroundEl = document.createElement('li')
+      artistBackgroundEl.className = 'artist-background'
+      artistBackgroundEl.setAttribute('id', 'container-' + i)
 
-    // append elements to page
-    artistContainerEl.appendChild(artistBackgroundEl)
-    artistBackgroundEl.appendChild(artistNameEl)
-    artistBackgroundEl.appendChild(btnContainerEl)
-    btnContainerEl.appendChild(showsBtnEl)
-    btnContainerEl.appendChild(trashBtnEl)
+      // create p element and give it value of songTitle (searched term)
+      var artistNameEl = document.createElement('p')
+      artistNameEl.classList.add('song-details')
+      artistNameEl.textContent = artist.name
 
-    }
+      // create container for buttons
+      var btnContainerEl = document.createElement('div')
+      btnContainerEl.classList.add('button-container')
+
+      // create find shows button
+      var showsBtnEl = document.createElement('a')
+      showsBtnEl.classList.add('shows')
+      showsBtnEl.textContent = 'Find Shows'
+      showsBtnEl.setAttribute('href', './playPage.html?q=' + artistNameEl.textContent);
+
+      // create trash button and icon
+      var trashBtnEl = document.createElement('button')
+      trashBtnEl.classList.add('trash')
+      trashBtnEl.classList.add('far')
+      trashBtnEl.classList.add('fa-trash-alt')
+      // id for trash button so we can target to remove item
+      trashBtnEl.setAttribute('id', 'button-' + i)
+      trashBtnEl.addEventListener('click', function(e) {
+        removeArtist(e, i)
+      })
+
+      // append elements to page
+      artistContainerEl.appendChild(artistBackgroundEl)
+      artistBackgroundEl.appendChild(artistNameEl)
+      artistBackgroundEl.appendChild(btnContainerEl)
+      btnContainerEl.appendChild(showsBtnEl)
+      btnContainerEl.appendChild(trashBtnEl)
+
+  }
 
 }
 

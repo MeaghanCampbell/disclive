@@ -23,6 +23,11 @@ var submitFindShows = function() {
 
 } 
 
+var showError = function () {
+    const errorContainer = document.getElementById('error-msg')
+    errorContainer.classList.remove('hidden')
+}
+
 var fetchBandsData = function(artistName2) {
     
     fetch(
@@ -32,7 +37,9 @@ var fetchBandsData = function(artistName2) {
         return response.json();
     })
     .then(function(data) {
-        if(data.page.totalElements = 0) {
+
+        if(data.page.totalElements === 0) {
+            showError()
             console.log('Artist does not have any upcoming shows on Ticketmaster')
         } else {
             let attractionId = data._embedded.attractions[0].id
@@ -56,7 +63,13 @@ var fetchBandsData = function(artistName2) {
                 }
                 displayConcertDates()
             })
+            .catch(function(error) {
+                showError()
+            })
         }
+    })
+    .catch(function(error) {
+        showError()
     })
 }
 

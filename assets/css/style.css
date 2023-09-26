@@ -93,10 +93,16 @@
     padding: 5px 15px;
     margin: 0 10px;
   }
-  
+
   .shows:hover, .trash:hover {
     box-shadow: none;
     background-color: #f38162;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .shows {
+      margin-top: .75em;
+    }
   }
   
   .modal-close {
